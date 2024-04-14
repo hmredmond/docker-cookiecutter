@@ -1,0 +1,13 @@
+# build in repo
+docker build -t cookiecutter-image .
+
+# run in repo
+docker run -e GITHUB_TOKEN=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 -v $(pwd):/output cookiecutter-image
+
+# gh token:
+# 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
+
+# run remote repository
+docker build -t cookiecutter-image <REMOTE_REPOSITORY_URL>
+
+docker run -it -v $(pwd):/output cookiecutter-image https://github.com/statsbomb/kitbag-kickoff.git output_dir=/output

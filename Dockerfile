@@ -3,28 +3,35 @@ FROM python:3.9
 # Install cookiecutter
 RUN pip install cookiecutter
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
 # Set environment variable for the Personal Access Token
 ARG PAT
 ENV MY_PAT=$PAT
 
+RUN echo 'TOKEN:'
 RUN echo $MY_PAT
 # Configure Git to use the PAT
 RUN git config --global credential.helper '!f() { echo "username=${MY_PAT}"; echo "password=x-oauth-basic"; }; f'
 
-# # Create a script for downloading the folder structure
-RUN echo '#!/bin/bash' >> /app/download.sh \
-    && echo 'mkdir -p /app/output' >> /app/download.sh \
-    && echo 'cd /app/output' >> /app/download.sh \
-    && echo 'wget --recursive --no-parent --no-host-directories http://localhost:8000/output/' >> /app/download.sh \
-    && chmod +x /app/download.sh
+# Set an environment variable for non-interactive mode
+ENV COOKIECUTTER_NON_INTERACTIVE=true
 
-RUN echo 'About to run cookiecutter'
+# Set an environment variable to disable color output
+ENV COOKIECUTTER_NO_INPUT=true
 
-# Run cookiecutter command and save artifacts
-RUN cookiecutter --no-input gh:statsbomb/kitbag-kickoff
+# Set an environment variable to enable verbose output
+ENV COOKIECUTTER_VERBOSE=true
 
-CMD ls && cp -R Kickoff-project-name/* /app/output/ \
-    && /app/download.sh
+# Define the entrypoint
+ENTRYPOINT ["cookiecutter"]
+
+# Set a default command (replace with your repository URL)
+CMD ["https://github.com/statsbomb/kitbag-kickoff.git"]
+
+# End of Dockerfile
+
+# to be run with the following commands
+# docker build --build-arg PAT=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 -t cookiecutter-image .
+# docker run -it -v .:/app cookiecutter-image https://github.com/statsbomb/kitbag-kickoff.git  
