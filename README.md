@@ -6,3 +6,8 @@ chmod +x kickoff-time.sh
 sh ./kickoff-time.sh <PAT>
 echo "now use cd <name of project> to see the contents of the created project"
 ```
+
+
+```
+npx --package https://github.com/<username>/<repository>#<branch> npm run docker:build
+```
