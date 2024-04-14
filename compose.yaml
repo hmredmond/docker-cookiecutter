@@ -1,0 +1,10 @@
+version: "3"
+services:
+  cookiecutter_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - PAT=${PAT}
+    volumes:
+      - ./local_directory:/app/output
