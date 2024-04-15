@@ -15,7 +15,7 @@ if (args.length === 0) {
 const PAT = args[0];
 
 // Download the shell script
-const scriptUrl = 'https://raw.githubusercontent.com/hmredmond/docker-cookiecutter/main/kickoff.sh';
+const scriptUrl = 'https://raw.githubusercontent.com/hmredmond/docker-cookiecutter/main/bin/kickoff.sh';
 const scriptPath = './kickoff.sh';
 
 https.get(scriptUrl, (response) => {
