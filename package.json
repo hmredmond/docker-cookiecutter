@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "kickoff-whistle": "index.js",
     "kickoff": "sh ./kickoff-time.sh",
     "kickoff-time:build": "docker build --build-arg PAT=$1 -t kitbag-kickoff-cookiecutter-image -f https://raw.githubusercontent.com/hmredmond/docker-cookiecutter/main/Dockerfile .",
     "kickoff-time:run": "docker run -it -v .:/app kitbag-kickoff-cookiecutter-image https://github.com/statsbomb/kitbag-kickoff.git", 
-    "test-index": "index.js"
+    "test-index": "kickoff-whistle"
 
   },
   "bin": {
-    "kickoff": "index.js"
+    "kickoff-whistle": "index.js"
   },
   "keywords": [],
   "author": "",
