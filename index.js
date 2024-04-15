@@ -18,11 +18,8 @@ const myArgument = args[0];
 // Use the argument in your script
 console.log(`Argument value: ${myArgument}`);
 
-// Define the path to your shell script
-const scriptPath = './kickoff-time.sh';
-
 // Execute the shell script
-exec(`sh ${scriptPath} ${myArgument}`, (error, stdout, stderr) => {
+exec(`sh ./kickoff-time.sh ${myArgument}`, (error, stdout, stderr) => {
   if (error) {
     console.error(`Error executing the script: ${error.message}`);
     return;
@@ -31,5 +28,18 @@ exec(`sh ${scriptPath} ${myArgument}`, (error, stdout, stderr) => {
     console.error(`Script execution returned an error: ${stderr}`);
     return;
   }
-  console.log(`Script executed successfully. Output:\n${stdout}`);
+  console.log(`Build Script executed successfully. Output:\n${stdout}`);
+
+    exec(`sh ./kickoff-time-run.sh`, (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error executing the script: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.error(`Script execution returned an error: ${stderr}`);
+        return;
+    }
+    console.log(`Run Script executed successfully. Output:\n${stdout}`);
+    });
+  
 });
