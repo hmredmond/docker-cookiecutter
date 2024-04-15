@@ -22,7 +22,7 @@ ENV COOKIECUTTER_NON_INTERACTIVE=true
 ENV COOKIECUTTER_NO_INPUT=true
 
 # Set an environment variable to enable verbose output
-ENV COOKIECUTTER_VERBOSE=true
+ENV COOKIECUTTER_VERBOSE=false
 
 # Define the entrypoint
 ENTRYPOINT ["cookiecutter"]
