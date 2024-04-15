@@ -13,11 +13,11 @@ if (args.length === 0) {
 }
 
 // Get the value of the argument
-const myArgument = args[0];
+const PAT = args[0];
 
 // Download the shell script
-const scriptUrl = 'https://raw.githubusercontent.com/hmredmond/docker-cookiecutter/main/kickoff-time.sh';
-const scriptPath = './kickoff-time.sh';
+const scriptUrl = 'https://raw.githubusercontent.com/hmredmond/docker-cookiecutter/main/kickoff.sh';
+const scriptPath = './kickoff.sh';
 
 https.get(scriptUrl, (response) => {
   if (response.statusCode !== 200) {
@@ -35,7 +35,7 @@ https.get(scriptUrl, (response) => {
     fs.chmodSync(scriptPath, '755');
 
     // Execute the shell script
-    exec(`sh ${scriptPath} ${myArgument}`, (error, stdout, stderr) => {
+    exec(`sh ${scriptPath} ${PAT}`, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing the script: ${error.message}`);
         return;

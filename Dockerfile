@@ -29,7 +29,3 @@ ENTRYPOINT ["cookiecutter"]
 CMD ["https://github.com/statsbomb/kitbag-kickoff.git"]
 
 # End of Dockerfile
-
-# to be run with the following commands
-# docker build --build-arg PAT=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 -t cookiecutter-image .
-# docker run -it -v .:/app cookiecutter-image https://github.com/statsbomb/kitbag-kickoff.git  
