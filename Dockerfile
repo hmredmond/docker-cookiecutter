@@ -10,8 +10,6 @@ WORKDIR /app
 ARG PAT
 ENV MY_PAT=$PAT
 
-RUN echo 'TOKEN:'
-RUN echo $MY_PAT
 # Configure Git to use the PAT
 RUN git config --global credential.helper '!f() { echo "username=${MY_PAT}"; echo "password=x-oauth-basic"; }; f'
 
