@@ -9,7 +9,6 @@ const args = process.argv.slice(2);
 // Check if an argument is provided
 if (args.length === 0) {
   console.error('No argument provided.');
-  process.exit(1);
 }
 
 // Get the value of the argument
@@ -33,19 +32,6 @@ https.get(scriptUrl, (response) => {
 
     // Make the script executable
     fs.chmodSync(scriptPath, '755');
-
-    // Execute the shell script
-    exec(`sh ${scriptPath} ${PAT}`, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error executing the script: ${error.message}`);
-        return;
-      }
-      if (stderr) {
-        console.error(`Script execution returned an error: ${stderr}`);
-        return;
-      }
-      console.log(`Script executed successfully. Output:\n${stdout}`);
-    });
   });
 }).on('error', (error) => {
   console.error(`Error downloading the script: ${error.message}`);
